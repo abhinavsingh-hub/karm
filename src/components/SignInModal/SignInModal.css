@@ -1,0 +1,210 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: var(--spacing-md);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp 0.3s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .modal-content {
+  background: var(--dark-bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: var(--bg-secondary);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.modal-header h2 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.modal-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.signin-types {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.signin-type {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: left;
+}
+
+.signin-type:hover {
+  border-color: var(--accent-turquoise);
+  transform: translateX(5px);
+  box-shadow: var(--shadow-md);
+}
+
+.signin-type.active {
+  border-color: var(--accent-turquoise);
+  background: rgba(64, 224, 208, 0.1);
+  box-shadow: var(--shadow-glow);
+}
+
+.type-icon {
+  font-size: 1.5rem;
+  color: var(--accent-turquoise);
+  flex-shrink: 0;
+}
+
+.type-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.type-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.type-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-turquoise);
+  box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.1);
+}
+
+.form-group input::placeholder {
+  color: var(--text-secondary);
+}
+
+.submit-button {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: var(--spacing-sm);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.form-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-sm);
+}
+
+.form-footer a {
+  color: var(--accent-turquoise);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    padding: var(--spacing-lg);
+    max-width: 100%;
+  }
+
+  .signin-type {
+    padding: var(--spacing-sm);
+  }
+}
+

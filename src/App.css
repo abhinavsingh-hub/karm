@@ -1,0 +1,19 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure proper spacing for fixed header */
+section:first-of-type {
+  margin-top: 0;
+}

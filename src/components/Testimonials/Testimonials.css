@@ -1,0 +1,246 @@
+.testimonials {
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.floating-hearts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.heart-icon {
+  position: absolute;
+  color: rgba(255, 184, 77, 0.3);
+  font-size: 2rem;
+  animation: float 4s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.heart-icon:nth-child(1) {
+  top: 10%;
+  left: 10%;
+}
+
+.heart-icon:nth-child(2) {
+  top: 20%;
+  right: 15%;
+}
+
+.heart-icon:nth-child(3) {
+  top: 50%;
+  left: 5%;
+}
+
+.heart-icon:nth-child(4) {
+  bottom: 20%;
+  right: 10%;
+}
+
+.heart-icon:nth-child(5) {
+  bottom: 10%;
+  left: 20%;
+}
+
+.heart-icon:nth-child(6) {
+  top: 30%;
+  right: 30%;
+}
+
+.testimonials .container {
+  position: relative;
+  z-index: 1;
+}
+
+.testimonials-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.carousel-btn {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-glow);
+}
+
+.carousel-container {
+  flex: 1;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+.testimonial-card {
+  min-width: 100%;
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  border-radius: var(--radius-xl);
+  position: relative;
+}
+
+.quote-icon {
+  font-size: 3rem;
+  color: var(--accent-amber);
+  opacity: 0.3;
+  position: absolute;
+  top: var(--spacing-lg);
+  left: var(--spacing-lg);
+}
+
+.testimonial-quote {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-style: italic;
+  margin: var(--spacing-lg) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: auto;
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.author-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.author-role {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.author-impact {
+  color: var(--accent-turquoise);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: var(--bg-tertiary);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  padding: 0;
+}
+
+.indicator:hover {
+  background: var(--accent-turquoise);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: var(--accent-turquoise);
+  width: 32px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-glow);
+}
+
+@media (max-width: 768px) {
+  .testimonials-carousel {
+    gap: var(--spacing-sm);
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .testimonial-card {
+    padding: var(--spacing-lg);
+  }
+
+  .quote-icon {
+    font-size: 2rem;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+  }
+
+  .testimonial-quote {
+    font-size: 1.1rem;
+  }
+
+  .testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+}
+

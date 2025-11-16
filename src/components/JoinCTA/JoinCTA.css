@@ -1,0 +1,178 @@
+.join-cta {
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.join-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(64, 224, 208, 0.1) 0%,
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+.cta-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.cta-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-3xl);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-button {
+  background: var(--bg-secondary);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .cta-button {
+  border: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: left var(--transition-base);
+  z-index: 0;
+}
+
+.cta-button:hover {
+  transform: translateX(10px);
+  border-color: var(--accent-turquoise);
+  box-shadow: var(--shadow-glow);
+}
+
+.cta-button:hover::before {
+  left: 0;
+}
+
+.button-icon {
+  font-size: 1.5rem;
+  color: var(--accent-turquoise);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+}
+
+.cta-button:hover .button-icon {
+  transform: scale(1.2) rotate(5deg);
+  color: var(--color-white);
+}
+
+.button-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.button-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  transition: color var(--transition-base);
+}
+
+.cta-button:hover .button-label {
+  color: var(--color-white);
+}
+
+.button-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color var(--transition-base);
+}
+
+.cta-button:hover .button-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button-arrow {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.cta-button:hover .button-arrow {
+  color: var(--color-white);
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .cta-title {
+    font-size: 2rem;
+  }
+
+  .cta-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .cta-button {
+    padding: var(--spacing-md);
+  }
+
+  .button-icon {
+    font-size: 1.2rem;
+  }
+
+  .button-label {
+    font-size: 1rem;
+  }
+
+  .button-description {
+    font-size: 0.85rem;
+  }
+}
+
