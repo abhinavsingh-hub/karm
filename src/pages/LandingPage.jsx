@@ -24,7 +24,6 @@ const LandingPage = () => {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [signInType, setSignInType] = useState('individual');
   const [isSignIn, setIsSignIn] = useState(false);
-  const navigate = useNavigate();
 
   const handleJoinClick = (type = 'individual') => {
     setSignInType(type);
