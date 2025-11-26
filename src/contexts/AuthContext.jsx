@@ -11,22 +11,30 @@ export const AuthProvider = ({ children }) => {
 
   // Initialize auth state from localStorage
   useEffect(() => {
-    const savedAuth = storage.getAuth();
-    const savedUser = storage.getUser();
-    
-    if (savedAuth && savedUser) {
-      setUser(savedUser);
-      setIsAuthenticated(true);
+    try {
+      const savedAuth = storage.getAuth();
+      const savedUser = storage.getUser();
+      
+      if (savedAuth && savedUser) {
+        setUser(savedUser);
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.error('Error loading auth state:', error);
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   }, []);
 
   // Initialize mock data on first load
   useEffect(() => {
-    if (!storage.get('users')) {
-      const mockUsers = generateMockUsers();
-      storage.set('users', mockUsers);
+    try {
+      if (!storage.get('users')) {
+        const mockUsers = generateMockUsers();
+        storage.set('users', mockUsers);
+      }
+    } catch (error) {
+      console.error('Error initializing mock data:', error);
     }
   }, []);
 
