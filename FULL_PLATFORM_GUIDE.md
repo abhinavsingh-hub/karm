@@ -312,6 +312,77 @@ Output will be in `dist/` directory.
 - Check that all assets are included
 - Test in production mode before deploying
 
+## 🖼️ Customizing the Landing Page Hero Image
+
+### Current Implementation
+
+The landing page currently uses a gradient background with animated particles (moving dots) and an SVG placeholder overlay. This creates a beautiful, modern effect without requiring external image assets.
+
+### Replacing with a Custom Image (Optional)
+
+If you want to replace the placeholder with an actual image of humans helping, kids, or animals:
+
+1. **Add your image to the project:**
+   ```bash
+   # Place your image in the public folder
+   public/assets/hero-image.jpg
+   ```
+
+2. **Update `src/pages/LandingPage.css`:**
+   Find the `.hero-image-overlay` class and modify it:
+   ```css
+   .hero-image-overlay {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-image: url('/assets/hero-image.jpg');
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     z-index: 1;
+     opacity: 0.4; /* Adjust opacity to blend with particles */
+   }
+   ```
+
+3. **Remove the SVG placeholder (optional):**
+   In `src/pages/LandingPage.css`, remove or comment out:
+   ```css
+   .hero-image-overlay::before {
+     /* Remove this if using a real image */
+   }
+   ```
+
+4. **Adjust opacity and overlays:**
+   - The particles canvas will still animate on top
+   - Adjust the gradient overlays to ensure text readability
+   - Test on different screen sizes
+
+### Recommended Image Specifications
+
+- **Format:** JPG or WebP (WebP for better compression)
+- **Dimensions:** 1920x1080 or higher (will be cropped to fit)
+- **Aspect Ratio:** 16:9 or wider
+- **File Size:** Under 500KB (optimize for web)
+- **Content:** Humans helping each other, kids, or animals in community settings
+
+### Image Optimization Tools
+
+- [Squoosh](https://squoosh.app/) - Online image optimizer
+- [TinyPNG](https://tinypng.com/) - Compress images
+- [ImageOptim](https://imageoptim.com/) - Desktop tool for Mac
+
+### Current Effect
+
+The current placeholder creates a beautiful gradient effect with:
+- Animated particles (moving dots) in the background
+- Gradient overlays for depth
+- Smooth animations
+- No external dependencies
+
+This works great for production and can be enhanced with a real image later if desired.
+
 ## ✅ Completed Todos
 
 All todos from the implementation plan have been completed:

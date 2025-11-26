@@ -188,23 +188,54 @@ const LandingPage = () => {
       <main>
         <section id="about" className="about-section">
           <div className="container">
-            <h2>About Us</h2>
-            <p>
-              Our site acts as a social platform for social good, a digital bridge connecting individuals,
-              institutions, and NGOs based on location, interests, and causes.
-            </p>
-            <p>
-              Like a blend of LinkedIn and Reddit, it enables users to discover issues nearby, post community concerns,
-              contribute resources, or collaborate for long‑term projects.
-            </p>
-            <p>Key aspects of value:</p>
-            <ul>
-              <li>Encourages community participation through localized issue discovery.</li>
-              <li>Promotes transparency and measurable social contribution.</li>
-              <li>
-                Reduces daily food wastage by connecting food suppliers (canteens, colleges, hostels) directly with NGOs.
-              </li>
-            </ul>
+            <div className="about-content">
+              <div className="about-text">
+                <h2>About Us</h2>
+                <p>
+                  Our site acts as a social platform for social good, a digital bridge connecting individuals,
+                  institutions, and NGOs based on location, interests, and causes.
+                </p>
+                <p>
+                  Like a blend of LinkedIn and Reddit, it enables users to discover issues nearby, post community concerns,
+                  contribute resources, or collaborate for long‑term projects.
+                </p>
+                <p>Key aspects of value:</p>
+                <ul>
+                  <li>Encourages community participation through localized issue discovery.</li>
+                  <li>Promotes transparency and measurable social contribution.</li>
+                  <li>
+                    Reduces daily food wastage by connecting food suppliers (canteens, colleges, hostels) directly with NGOs.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="onboarding-block">
+                <h3>How to Use Karm in 3 Steps</h3>
+                <div className="onboarding-steps">
+                  <div className="onboarding-step">
+                    <div className="step-number">1</div>
+                    <div className="step-content">
+                      <h4>Sign Up & Create Your Profile</h4>
+                      <p>Join as an Individual, Non-Profit, or Institution. Build your profile to connect with like-minded changemakers.</p>
+                    </div>
+                  </div>
+                  <div className="onboarding-step">
+                    <div className="step-number">2</div>
+                    <div className="step-content">
+                      <h4>Discover & Engage</h4>
+                      <p>Browse local campaigns, connect with organizations, and find causes that matter to you. Post issues, share resources, or join ongoing initiatives.</p>
+                    </div>
+                  </div>
+                  <div className="onboarding-step">
+                    <div className="step-number">3</div>
+                    <div className="step-content">
+                      <h4>Make an Impact</h4>
+                      <p>Collaborate with others, track your contributions, and see the measurable difference you're making in your community.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
         <HowItWorks />
