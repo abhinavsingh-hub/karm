@@ -17,10 +17,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
-  transition: background-color var(--transition-base), color var(--transition-base);
+  color: var(--text-primary, #111827);
+  background-color: var(--bg-primary, #ffffff);
+  transition: background-color var(--transition-base, 300ms ease), color var(--transition-base, 300ms ease);
   overflow-x: hidden;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {

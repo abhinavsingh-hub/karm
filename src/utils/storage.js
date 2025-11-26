@@ -1,55 +1,103 @@
 // localStorage utility functions for data persistence
 
+// Safe localStorage wrapper that handles errors gracefully
+const safeLocalStorage = {
+  getItem: (key) => {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      console.error('localStorage getItem error:', e);
+      return null;
+    }
+  },
+  setItem: (key, value) => {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      console.error('localStorage setItem error:', e);
+    }
+  },
+  removeItem: (key) => {
+    try {
+      localStorage.removeItem(key);
+    } catch (e) {
+      console.error('localStorage removeItem error:', e);
+    }
+  }
+};
+
 export const storage = {
   // Auth storage
   setAuth: (authData) => {
-    localStorage.setItem('karm_auth', JSON.stringify(authData));
+    safeLocalStorage.setItem('karm_auth', JSON.stringify(authData));
   },
 
   getAuth: () => {
-    const auth = localStorage.getItem('karm_auth');
-    return auth ? JSON.parse(auth) : null;
+    const auth = safeLocalStorage.getItem('karm_auth');
+    if (!auth) return null;
+    try {
+      return JSON.parse(auth);
+    } catch (e) {
+      console.error('Error parsing auth:', e);
+      return null;
+    }
   },
 
   clearAuth: () => {
-    localStorage.removeItem('karm_auth');
+    safeLocalStorage.removeItem('karm_auth');
   },
 
   // User data storage
   setUser: (user) => {
-    localStorage.setItem('karm_user', JSON.stringify(user));
+    safeLocalStorage.setItem('karm_user', JSON.stringify(user));
   },
 
   getUser: () => {
-    const user = localStorage.getItem('karm_user');
-    return user ? JSON.parse(user) : null;
+    const user = safeLocalStorage.getItem('karm_user');
+    if (!user) return null;
+    try {
+      return JSON.parse(user);
+    } catch (e) {
+      console.error('Error parsing user:', e);
+      return null;
+    }
   },
 
   clearUser: () => {
-    localStorage.removeItem('karm_user');
+    safeLocalStorage.removeItem('karm_user');
   },
 
   // Generic storage helpers
   set: (key, value) => {
-    localStorage.setItem(`karm_${key}`, JSON.stringify(value));
+    safeLocalStorage.setItem(`karm_${key}`, JSON.stringify(value));
   },
 
   get: (key) => {
-    const item = localStorage.getItem(`karm_${key}`);
-    return item ? JSON.parse(item) : null;
+    const item = safeLocalStorage.getItem(`karm_${key}`);
+    if (!item) return null;
+    try {
+      return JSON.parse(item);
+    } catch (e) {
+      console.error(`Error parsing ${key}:`, e);
+      return null;
+    }
   },
 
   remove: (key) => {
-    localStorage.removeItem(`karm_${key}`);
+    safeLocalStorage.removeItem(`karm_${key}`);
   },
 
   // Clear all Karm data
   clearAll: () => {
-    Object.keys(localStorage).forEach(key => {
-      if (key.startsWith('karm_')) {
-        localStorage.removeItem(key);
-      }
-    });
+    try {
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith('karm_')) {
+          safeLocalStorage.removeItem(key);
+        }
+      });
+    } catch (e) {
+      console.error('Error clearing storage:', e);
+    }
   }
 };
 

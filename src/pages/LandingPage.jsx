@@ -28,69 +28,78 @@ const LandingPage = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    try {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+      const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
 
-    resizeCanvas();
+      resizeCanvas();
 
-    const particles = [];
-    const particleCount = 50;
+      const particles = [];
+      const particleCount = 50;
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 2 - 1;
-        this.speedY = Math.random() * 2 - 1;
-        this.opacity = Math.random() * 0.5 + 0.2;
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 3 + 1;
+          this.speedX = Math.random() * 2 - 1;
+          this.speedY = Math.random() * 2 - 1;
+          this.opacity = Math.random() * 0.5 + 0.2;
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x > canvas.width) this.x = 0;
+          if (this.x < 0) this.x = canvas.width;
+          if (this.y > canvas.height) this.y = 0;
+          if (this.y < 0) this.y = canvas.height;
+        }
+
+        draw() {
+          ctx.fillStyle = `rgba(64, 224, 208, ${this.opacity})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
 
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
       }
 
-      draw() {
-        ctx.fillStyle = `rgba(64, 224, 208, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      let animationFrameId;
+
+      const animate = () => {
+        try {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach((particle) => {
+            particle.update();
+            particle.draw();
+          });
+          animationFrameId = requestAnimationFrame(animate);
+        } catch (e) {
+          console.error('Animation error:', e);
+        }
+      };
+
+      animate();
+
+      window.addEventListener('resize', resizeCanvas);
+
+      return () => {
+        window.removeEventListener('resize', resizeCanvas);
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      };
+    } catch (error) {
+      console.error('Particle animation error:', error);
     }
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    let animationFrameId;
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-      });
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    window.addEventListener('resize', resizeCanvas);
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    };
   }, []);
 
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
