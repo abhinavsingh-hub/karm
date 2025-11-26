@@ -1,0 +1,16 @@
+.feed {
+  width: 100%;
+}
+
+.feed-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.feed-posts {
+  display: flex;
+  flex-direction: column;
+}
+
