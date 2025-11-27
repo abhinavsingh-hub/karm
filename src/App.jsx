@@ -1,44 +1,96 @@
-import { useState } from 'react';
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import SignInModal from './components/SignInModal/SignInModal';
-import HowItWorks from './components/HowItWorks/HowItWorks';
-import FeaturesShowcase from './components/FeaturesShowcase/FeaturesShowcase';
-import ImpactTracker from './components/ImpactTracker/ImpactTracker';
-import CommunityFeed from './components/CommunityFeed/CommunityFeed';
-import Testimonials from './components/Testimonials/Testimonials';
-import JoinCTA from './components/JoinCTA/JoinCTA';
-import Footer from './components/Footer/Footer';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import LandingPage from './pages/LandingPage';
+import HomePage from './pages/HomePage';
+import ProfilePage from './pages/ProfilePage';
+import CampaignsPage from './pages/CampaignsPage';
+import ConnectionsPage from './pages/ConnectionsPage';
+import MessagesPage from './pages/MessagesPage';
+import NotificationsPage from './pages/NotificationsPage';
+import SearchPage from './pages/SearchPage';
+import SettingsPage from './pages/SettingsPage';
 import './App.css';
 
 function App() {
-  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
-  const [signInType, setSignInType] = useState('individual');
-
-  const handleJoinClick = (type = 'individual') => {
-    setSignInType(type);
-    setIsSignInModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsSignInModalOpen(false);
-  };
-
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <Hero onJoinClick={() => handleJoinClick('individual')} />
-        <HowItWorks />
-        <FeaturesShowcase />
-        <ImpactTracker />
-        <CommunityFeed />
-        <Testimonials />
-        <JoinCTA onJoinClick={handleJoinClick} />
-      </main>
-      <Footer />
-      <SignInModal isOpen={isSignInModalOpen} onClose={handleCloseModal} defaultType={signInType} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile/:userId?"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/campaigns"
+          element={
+            <ProtectedRoute>
+              <CampaignsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/connections"
+          element={
+            <ProtectedRoute>
+              <ConnectionsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute>
+              <MessagesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <NotificationsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <ProtectedRoute>
+              <SearchPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <SettingsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/discover"
+          element={
+            <ProtectedRoute>
+              <CampaignsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -3,7 +3,7 @@ import { useTheme } from '../../contexts/ThemeContext';
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ onSignInClick }) => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -47,6 +47,11 @@ const Header = () => {
             <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
               {theme === 'light' ? <FiMoon /> : <FiSun />}
             </button>
+            {onSignInClick && (
+              <button className="sign-in-button" onClick={onSignInClick}>
+                Sign In
+              </button>
+            )}
           </nav>
 
           <button

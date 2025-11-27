@@ -11,14 +11,23 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
+  // Initialize theme synchronously before first render
+  const getInitialTheme = () => {
+    if (typeof window === 'undefined') return 'light';
+    
     // Check localStorage first, then system preference
     const savedTheme = localStorage.getItem('karm-theme');
-    if (savedTheme) {
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', savedTheme);
       return savedTheme;
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
+    
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', systemTheme);
+    return systemTheme;
+  };
+
+  const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
     const root = document.documentElement;

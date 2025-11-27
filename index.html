@@ -1,14 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Karm - For Humanity | Social Platform for Social Good</title>
     <meta name="description" content="Join Karm - The Social Platform for Social Good. Connect students, colleges, NGOs, and citizens to collaborate on local social causes and make measurable community impact." />
+    <script>
+      // Initialize theme before React loads
+      (function() {
+        const savedTheme = localStorage.getItem('karm-theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = savedTheme || systemTheme;
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f9fafb; color: #111827; font-family: system-ui, sans-serif;">
+        <div style="text-align: center;">
+          <h1 style="font-size: 2rem; margin-bottom: 1rem;">Loading Karm...</h1>
+          <div style="width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top: 4px solid #40e0d0; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+          <style>{`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
