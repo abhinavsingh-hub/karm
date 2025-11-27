@@ -6,7 +6,7 @@ Karm has been transformed from a landing page into a **fully functional social p
 
 **Version:** 1.0.0  
 **Status:** ✅ Fully Functional  
-**Last Updated:** December 2024
+**Last Updated:** November 2025
 
 ## 🚀 What's New
 
