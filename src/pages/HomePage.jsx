@@ -9,7 +9,7 @@ import './HomePage.css';
 const HomePage = () => {
   const { user } = useAuth();
   const [stats, setStats] = useState({
-    connections: 0,
+    connections: 1,
     campaigns: 0,
     impact: 0
   });
